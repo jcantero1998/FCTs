@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BdFCTsModelStoreContainer" CdmEntityContainer="BdFCTsEntities">
+    <EntitySetMapping Name="Alumnos">
+      <EntityTypeMapping TypeName="BdFCTsModel.Alumno">
+        <MappingFragment StoreEntitySet="Alumnos">
+          <ScalarProperty Name="NMatricula" ColumnName="NMatricula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Aprobado" ColumnName="Aprobado" />
+          <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ciclos">
+      <EntityTypeMapping TypeName="BdFCTsModel.Ciclo">
+        <MappingFragment StoreEntitySet="Ciclos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresas">
+      <EntityTypeMapping TypeName="BdFCTsModel.Empresa">
+        <MappingFragment StoreEntitySet="Empresas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FCTs">
+      <EntityTypeMapping TypeName="BdFCTsModel.FCT">
+        <MappingFragment StoreEntitySet="FCTs">
+          <ScalarProperty Name="NMatricula" ColumnName="NMatricula" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="TutorInsti" ColumnName="TutorInsti" />
+          <ScalarProperty Name="TutorEmpresa" ColumnName="TutorEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OfertasFCTs">
+      <EntityTypeMapping TypeName="BdFCTsModel.OfertasFCT">
+        <MappingFragment StoreEntitySet="OfertasFCT">
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profes">
+      <EntityTypeMapping TypeName="BdFCTsModel.Profe">
+        <MappingFragment StoreEntitySet="Profes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

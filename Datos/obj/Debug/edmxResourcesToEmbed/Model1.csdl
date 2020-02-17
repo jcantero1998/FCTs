@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BdFCTsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="NMatricula" />
+    </Key>
+    <Property Name="NMatricula" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aprobado" Type="Boolean" Nullable="false" />
+    <Property Name="IdCiclo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ciclo" Relationship="Self.FK_Alumnos_Ciclos" FromRole="Alumnos" ToRole="Ciclos" />
+    <NavigationProperty Name="FCT" Relationship="Self.FK_FCTs_Alumnos" FromRole="Alumnos" ToRole="FCTs" />
+  </EntityType>
+  <EntityType Name="Ciclo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.FK_Alumnos_Ciclos" FromRole="Ciclos" ToRole="Alumnos" />
+    <NavigationProperty Name="OfertasFCTs" Relationship="Self.FK_OfertasFCT_Ciclos" FromRole="Ciclos" ToRole="OfertasFCT" />
+  </EntityType>
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TelefonoContacto" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FCTs" Relationship="Self.FK_FCTs_Empresas" FromRole="Empresas" ToRole="FCTs" />
+    <NavigationProperty Name="OfertasFCTs" Relationship="Self.FK_OfertasFCT_Empresas" FromRole="Empresas" ToRole="OfertasFCT" />
+  </EntityType>
+  <EntityType Name="FCT">
+    <Key>
+      <PropertyRef Name="NMatricula" />
+    </Key>
+    <Property Name="NMatricula" Type="Int32" Nullable="false" />
+    <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+    <Property Name="TutorInsti" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TutorEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Alumno" Relationship="Self.FK_FCTs_Alumnos" FromRole="FCTs" ToRole="Alumnos" />
+    <NavigationProperty Name="Empresa" Relationship="Self.FK_FCTs_Empresas" FromRole="FCTs" ToRole="Empresas" />
+    <NavigationProperty Name="Profe" Relationship="Self.FK_FCTs_Profes" FromRole="FCTs" ToRole="Profes" />
+  </EntityType>
+  <EntityType Name="OfertasFCT">
+    <Key>
+      <PropertyRef Name="IdEmpresa" />
+      <PropertyRef Name="IdCiclo" />
+    </Key>
+    <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+    <Property Name="IdCiclo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ciclo" Relationship="Self.FK_OfertasFCT_Ciclos" FromRole="OfertasFCT" ToRole="Ciclos" />
+    <NavigationProperty Name="Empresa" Relationship="Self.FK_OfertasFCT_Empresas" FromRole="OfertasFCT" ToRole="Empresas" />
+  </EntityType>
+  <EntityType Name="Profe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FCTs" Relationship="Self.FK_FCTs_Profes" FromRole="Profes" ToRole="FCTs" />
+  </EntityType>
+  <Association Name="FK_Alumnos_Ciclos">
+    <End Role="Ciclos" Type="Self.Ciclo" Multiplicity="0..1" />
+    <End Role="Alumnos" Type="Self.Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciclos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alumnos">
+        <PropertyRef Name="IdCiclo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FCTs_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumno" Multiplicity="1" />
+    <End Role="FCTs" Type="Self.FCT" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="NMatricula" />
+      </Principal>
+      <Dependent Role="FCTs">
+        <PropertyRef Name="NMatricula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfertasFCT_Ciclos">
+    <End Role="Ciclos" Type="Self.Ciclo" Multiplicity="1" />
+    <End Role="OfertasFCT" Type="Self.OfertasFCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciclos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OfertasFCT">
+        <PropertyRef Name="IdCiclo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FCTs_Empresas">
+    <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="FCTs" Type="Self.FCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FCTs">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfertasFCT_Empresas">
+    <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="OfertasFCT" Type="Self.OfertasFCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OfertasFCT">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FCTs_Profes">
+    <End Role="Profes" Type="Self.Profe" Multiplicity="1" />
+    <End Role="FCTs" Type="Self.FCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FCTs">
+        <PropertyRef Name="TutorInsti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BdFCTsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumno" />
+    <EntitySet Name="Ciclos" EntityType="Self.Ciclo" />
+    <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+    <EntitySet Name="FCTs" EntityType="Self.FCT" />
+    <EntitySet Name="OfertasFCTs" EntityType="Self.OfertasFCT" />
+    <EntitySet Name="Profes" EntityType="Self.Profe" />
+    <AssociationSet Name="FK_Alumnos_Ciclos" Association="Self.FK_Alumnos_Ciclos">
+      <End Role="Ciclos" EntitySet="Ciclos" />
+      <End Role="Alumnos" EntitySet="Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FCTs_Alumnos" Association="Self.FK_FCTs_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="FCTs" EntitySet="FCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfertasFCT_Ciclos" Association="Self.FK_OfertasFCT_Ciclos">
+      <End Role="Ciclos" EntitySet="Ciclos" />
+      <End Role="OfertasFCT" EntitySet="OfertasFCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FCTs_Empresas" Association="Self.FK_FCTs_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="FCTs" EntitySet="FCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfertasFCT_Empresas" Association="Self.FK_OfertasFCT_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="OfertasFCT" EntitySet="OfertasFCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FCTs_Profes" Association="Self.FK_FCTs_Profes">
+      <End Role="Profes" EntitySet="Profes" />
+      <End Role="FCTs" EntitySet="FCTs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BdFCTsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="NMatricula" />
+    </Key>
+    <Property Name="NMatricula" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="9" Nullable="false" />
+    <Property Name="Aprobado" Type="bit" Nullable="false" />
+    <Property Name="IdCiclo" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Ciclos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TelefonoContacto" Type="nvarchar" MaxLength="9" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FCTs">
+    <Key>
+      <PropertyRef Name="NMatricula" />
+    </Key>
+    <Property Name="NMatricula" Type="int" Nullable="false" />
+    <Property Name="IdEmpresa" Type="int" Nullable="false" />
+    <Property Name="TutorInsti" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TutorEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OfertasFCT">
+    <Key>
+      <PropertyRef Name="IdEmpresa" />
+      <PropertyRef Name="IdCiclo" />
+    </Key>
+    <Property Name="IdEmpresa" Type="int" Nullable="false" />
+    <Property Name="IdCiclo" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Alumnos_Ciclos">
+    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="0..1" />
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciclos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alumnos">
+        <PropertyRef Name="IdCiclo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FCTs_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
+    <End Role="FCTs" Type="Self.FCTs" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="NMatricula" />
+      </Principal>
+      <Dependent Role="FCTs">
+        <PropertyRef Name="NMatricula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FCTs_Empresas">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+    <End Role="FCTs" Type="Self.FCTs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FCTs">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FCTs_Profes">
+    <End Role="Profes" Type="Self.Profes" Multiplicity="1" />
+    <End Role="FCTs" Type="Self.FCTs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FCTs">
+        <PropertyRef Name="TutorInsti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfertasFCT_Ciclos">
+    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="1" />
+    <End Role="OfertasFCT" Type="Self.OfertasFCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciclos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OfertasFCT">
+        <PropertyRef Name="IdCiclo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfertasFCT_Empresas">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+    <End Role="OfertasFCT" Type="Self.OfertasFCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OfertasFCT">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BdFCTsModelStoreContainer">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclos" EntityType="Self.Ciclos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FCTs" EntityType="Self.FCTs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OfertasFCT" EntityType="Self.OfertasFCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profes" EntityType="Self.Profes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Alumnos_Ciclos" Association="Self.FK_Alumnos_Ciclos">
+      <End Role="Ciclos" EntitySet="Ciclos" />
+      <End Role="Alumnos" EntitySet="Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FCTs_Alumnos" Association="Self.FK_FCTs_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="FCTs" EntitySet="FCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FCTs_Empresas" Association="Self.FK_FCTs_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="FCTs" EntitySet="FCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FCTs_Profes" Association="Self.FK_FCTs_Profes">
+      <End Role="Profes" EntitySet="Profes" />
+      <End Role="FCTs" EntitySet="FCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfertasFCT_Ciclos" Association="Self.FK_OfertasFCT_Ciclos">
+      <End Role="Ciclos" EntitySet="Ciclos" />
+      <End Role="OfertasFCT" EntitySet="OfertasFCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfertasFCT_Empresas" Association="Self.FK_OfertasFCT_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="OfertasFCT" EntitySet="OfertasFCT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

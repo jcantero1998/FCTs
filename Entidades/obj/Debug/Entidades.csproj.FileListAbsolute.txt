@@ -1,0 +1,11 @@
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\Entidades.dll.config
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\Entidades.dll
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\Entidades.pdb
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\EntityFramework.dll
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\EntityFramework.SqlServer.dll
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\EntityFramework.xml
+E:\Desktop\Acceso a datos\FCTs\Entidades\bin\Debug\EntityFramework.SqlServer.xml
+E:\Desktop\Acceso a datos\FCTs\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+E:\Desktop\Acceso a datos\FCTs\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+E:\Desktop\Acceso a datos\FCTs\Entidades\obj\Debug\Entidades.dll
+E:\Desktop\Acceso a datos\FCTs\Entidades\obj\Debug\Entidades.pdb

@@ -1,0 +1,8 @@
+E:\Desktop\Acceso a datos\FCTs\Presentacion\bin\Debug\Presentacion.exe.config
+E:\Desktop\Acceso a datos\FCTs\Presentacion\bin\Debug\Presentacion.exe
+E:\Desktop\Acceso a datos\FCTs\Presentacion\bin\Debug\Presentacion.pdb
+E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.csprojAssemblyReference.cache
+E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.Properties.Resources.resources
+E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.csproj.GenerateResource.cache
+E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.exe
+E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.pdb
