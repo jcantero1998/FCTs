@@ -20,7 +20,7 @@ namespace Entidades
             this.FCTs = new HashSet<FCT>();
         }
 
-        public Profe(string id, string nombre, ICollection<FCT> fCTs) : this()
+        public Profe(string id, string nombre) : this()
         {
             Id = id ?? throw new ArgumentNullException(nameof(id));
             Nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
