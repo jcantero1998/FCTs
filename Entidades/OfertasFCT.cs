@@ -14,6 +14,19 @@ namespace Entidades
     
     public partial class OfertasFCT
     {
+        public OfertasFCT()
+        {
+        }
+
+        public OfertasFCT(int idEmpresa, string idCiclo, int cantidad, Ciclo ciclo, Empresa empresa)
+        {
+            IdEmpresa = idEmpresa;
+            IdCiclo = idCiclo ?? throw new ArgumentNullException(nameof(idCiclo));
+            Cantidad = cantidad;
+            Ciclo = ciclo ?? throw new ArgumentNullException(nameof(ciclo));
+            Empresa = empresa ?? throw new ArgumentNullException(nameof(empresa));
+        }
+
         public int IdEmpresa { get; set; }
         public string IdCiclo { get; set; }
         public int Cantidad { get; set; }
