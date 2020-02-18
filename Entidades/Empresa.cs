@@ -12,7 +12,7 @@ namespace Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Empresa
+    public partial class Empresa : IEquatable<Empresa>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empresa()
@@ -36,5 +36,21 @@ namespace Entidades
         public virtual ICollection<FCT> FCTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OfertasFCT> OfertasFCTs { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Empresa);
+        }
+
+        public bool Equals(Empresa other)
+        {
+            return other != null &&
+                   Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2108858624 + Id.GetHashCode();
+        }
     }
 }
