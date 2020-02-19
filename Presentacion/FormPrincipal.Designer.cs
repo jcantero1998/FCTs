@@ -61,13 +61,14 @@
             this.cmbCiclos.FormattingEnabled = true;
             this.cmbCiclos.Location = new System.Drawing.Point(67, 30);
             this.cmbCiclos.Name = "cmbCiclos";
-            this.cmbCiclos.Size = new System.Drawing.Size(121, 21);
+            this.cmbCiclos.Size = new System.Drawing.Size(267, 21);
             this.cmbCiclos.TabIndex = 1;
+            this.cmbCiclos.SelectedIndexChanged += new System.EventHandler(this.cmbCiclos_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 36);
+            this.label2.Location = new System.Drawing.Point(340, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 2;
@@ -75,15 +76,15 @@
             // 
             // txtNombreCiclo
             // 
-            this.txtNombreCiclo.Location = new System.Drawing.Point(280, 32);
+            this.txtNombreCiclo.Location = new System.Drawing.Point(419, 32);
             this.txtNombreCiclo.Name = "txtNombreCiclo";
-            this.txtNombreCiclo.Size = new System.Drawing.Size(100, 20);
+            this.txtNombreCiclo.Size = new System.Drawing.Size(135, 20);
             this.txtNombreCiclo.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(405, 36);
+            this.label3.Location = new System.Drawing.Point(1062, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             // txtAlumnosDelCiclo
             // 
-            this.txtAlumnosDelCiclo.Location = new System.Drawing.Point(516, 32);
+            this.txtAlumnosDelCiclo.Location = new System.Drawing.Point(1173, 30);
             this.txtAlumnosDelCiclo.Name = "txtAlumnosDelCiclo";
             this.txtAlumnosDelCiclo.Size = new System.Drawing.Size(44, 20);
             this.txtAlumnosDelCiclo.TabIndex = 5;
@@ -99,7 +100,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(593, 37);
+            this.label4.Location = new System.Drawing.Point(1231, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 13);
             this.label4.TabIndex = 6;
@@ -107,7 +108,7 @@
             // 
             // txtAlumnosAsignados
             // 
-            this.txtAlumnosAsignados.Location = new System.Drawing.Point(713, 33);
+            this.txtAlumnosAsignados.Location = new System.Drawing.Point(1351, 33);
             this.txtAlumnosAsignados.Name = "txtAlumnosAsignados";
             this.txtAlumnosAsignados.Size = new System.Drawing.Size(44, 20);
             this.txtAlumnosAsignados.TabIndex = 7;
@@ -126,13 +127,13 @@
             this.dgvAlumnosDelCiclo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlumnosDelCiclo.Location = new System.Drawing.Point(29, 98);
             this.dgvAlumnosDelCiclo.Name = "dgvAlumnosDelCiclo";
-            this.dgvAlumnosDelCiclo.Size = new System.Drawing.Size(349, 207);
+            this.dgvAlumnosDelCiclo.Size = new System.Drawing.Size(668, 207);
             this.dgvAlumnosDelCiclo.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(405, 82);
+            this.label6.Location = new System.Drawing.Point(1043, 82);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(250, 13);
             this.label6.TabIndex = 10;
@@ -141,9 +142,9 @@
             // dgvEmpresasParaElCiclo
             // 
             this.dgvEmpresasParaElCiclo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmpresasParaElCiclo.Location = new System.Drawing.Point(408, 98);
+            this.dgvEmpresasParaElCiclo.Location = new System.Drawing.Point(751, 98);
             this.dgvEmpresasParaElCiclo.Name = "dgvEmpresasParaElCiclo";
-            this.dgvEmpresasParaElCiclo.Size = new System.Drawing.Size(349, 377);
+            this.dgvEmpresasParaElCiclo.Size = new System.Drawing.Size(644, 468);
             this.dgvEmpresasParaElCiclo.TabIndex = 11;
             // 
             // label7
@@ -160,14 +161,14 @@
             this.dgvAlumnosAsignados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlumnosAsignados.Location = new System.Drawing.Point(29, 337);
             this.dgvAlumnosAsignados.Name = "dgvAlumnosAsignados";
-            this.dgvAlumnosAsignados.Size = new System.Drawing.Size(349, 138);
+            this.dgvAlumnosAsignados.Size = new System.Drawing.Size(668, 229);
             this.dgvAlumnosAsignados.TabIndex = 13;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 513);
+            this.ClientSize = new System.Drawing.Size(1438, 606);
             this.Controls.Add(this.dgvAlumnosAsignados);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvEmpresasParaElCiclo);
@@ -184,6 +185,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormPrincipal";
             this.Text = "Consultas por ciclo";
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnosDelCiclo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresasParaElCiclo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnosAsignados)).EndInit();

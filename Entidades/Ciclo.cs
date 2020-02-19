@@ -12,7 +12,7 @@ namespace Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Ciclo : IEquatable<Ciclo>
+    public partial class Ciclo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ciclo()
@@ -20,14 +20,7 @@ namespace Entidades
             this.Alumnos = new HashSet<Alumno>();
             this.OfertasFCTs = new HashSet<OfertasFCT>();
         }
-
-        public Ciclo(string id, string nombre, string tipo) : this()
-        {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
-            Nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
-            Tipo = tipo ?? throw new ArgumentNullException(nameof(tipo));
-        }
-
+    
         public string Id { get; set; }
         public string Nombre { get; set; }
         public string Tipo { get; set; }
@@ -36,21 +29,5 @@ namespace Entidades
         public virtual ICollection<Alumno> Alumnos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OfertasFCT> OfertasFCTs { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as Ciclo);
-        }
-
-        public bool Equals(Ciclo other)
-        {
-            return other != null &&
-                   Id == other.Id;
-        }
-
-        public override int GetHashCode()
-        {
-            return 2108858624 + EqualityComparer<string>.Default.GetHashCode(Id);
-        }
     }
 }
