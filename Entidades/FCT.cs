@@ -14,6 +14,25 @@ namespace Entidades
     
     public partial class FCT
     {
+        public FCT()
+        {
+        }
+
+        public FCT(int nMatricula, int idEmpresa, string tutorInsti, string tutorEmpresa)
+        {
+            NMatricula = nMatricula;
+            IdEmpresa = idEmpresa;
+            TutorInsti = tutorInsti ?? throw new ArgumentNullException(nameof(tutorInsti));
+            TutorEmpresa = tutorEmpresa ?? throw new ArgumentNullException(nameof(tutorEmpresa));
+        }
+
+        public FCT(int nMatricula, int idEmpresa, string tutorInsti, string tutorEmpresa, Alumno alumno, Empresa empresa, Profe profe) : this(nMatricula, idEmpresa, tutorInsti, tutorEmpresa)
+        {
+            Alumno = alumno ?? throw new ArgumentNullException(nameof(alumno));
+            Empresa = empresa ?? throw new ArgumentNullException(nameof(empresa));
+            Profe = profe ?? throw new ArgumentNullException(nameof(profe));
+        }
+
         public int NMatricula { get; set; }
         public int IdEmpresa { get; set; }
         public string TutorInsti { get; set; }

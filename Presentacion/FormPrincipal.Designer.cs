@@ -42,6 +42,7 @@
             this.dgvEmpresasParaElCiclo = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.dgvAlumnosAsignados = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnosDelCiclo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresasParaElCiclo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnosAsignados)).BeginInit();
@@ -164,11 +165,22 @@
             this.dgvAlumnosAsignados.Size = new System.Drawing.Size(397, 229);
             this.dgvAlumnosAsignados.TabIndex = 13;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(29, 571);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Asignar Empresa";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 606);
+            this.ClientSize = new System.Drawing.Size(996, 606);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvAlumnosAsignados);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvEmpresasParaElCiclo);
@@ -210,6 +222,7 @@
         private System.Windows.Forms.DataGridView dgvEmpresasParaElCiclo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dgvAlumnosAsignados;
+        private System.Windows.Forms.Button button1;
     }
 }
 

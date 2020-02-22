@@ -75,5 +75,11 @@ namespace Presentacion
             dgvEmpresasParaElCiclo.DataSource = (from oferta in cicloActual.OfertasFCTs
                                        select new { Empresa= oferta.Empresa.Nombre, oferta.Empresa.TelefonoContacto, Solicitudes = oferta.Cantidad,Asignadas = oferta.Empresa.FCTs.Count }).ToList();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var formAsignarEmpresa = new FormAsignarEmpresa();
+            formAsignarEmpresa.Show();
+        }
     }
 }
