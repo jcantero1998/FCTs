@@ -70,13 +70,13 @@ namespace Presentacion
 
             //Alumnos Del Ciclo
             var alumnosDelCiclo = (from alumn in cicloActual.Alumnos
-                                   select new { alumn.Nombre,alumn.NMatricula }).ToList();
+                                   select new { alumn.NMatricula, alumn.Nombre,alumn.Telefono,alumn.Aprobado, alumn.IdCiclo }).ToList();
             cmbAlumnosDelCiclo.Items.AddRange(alumnosDelCiclo.ToArray());
             cmbAlumnosDelCiclo.DisplayMember = "Nombre";
 
             //Empresas para el ciclo actual
             var empresasParaElCiclo = (from oferta in cicloActual.OfertasFCTs
-                                       select new { oferta.Empresa.Nombre, oferta.Empresa, oferta.Empresa.Id}).ToList();
+                                       select new { oferta.Empresa.Id, oferta.Empresa.Nombre, oferta.Empresa.TelefonoContacto}).ToList();
             cmbEmpresasParaElCiclo.Items.AddRange(empresasParaElCiclo.ToArray());
             cmbEmpresasParaElCiclo.DisplayMember = "Nombre";
 
@@ -90,6 +90,35 @@ namespace Presentacion
         private void btnAsignar_Click(object sender, EventArgs e)
         {
 
+            if (cmbCiclos.Text == "" || cmbAlumnosDelCiclo.Text == "" || cmbEmpresasParaElCiclo.Text == "" || cmbTutorInstituto.Text == "" || txtTutorEmpresa.Text=="")
+            {
+                MessageBox.Show("Completa todos los campos");
+            }
+            else
+            {
+                //TODO PASAR STRINGS EN VEZ DE OBJETOS, PORQUE DA ERROR AL INTENTAR CONVERTIRLOS
+                Ciclo ciclo = (Ciclo)cmbCiclos.SelectedItem;
+                Alumno alumno = (Alumno)cmbAlumnosDelCiclo.SelectedItem;
+                Empresa empresa = (Empresa)cmbEmpresasParaElCiclo.SelectedItem;
+                Profe tutorInstituto = (Profe)cmbTutorInstituto.SelectedItem;
+                string tutorEmpresa = txtTutorEmpresa.Text;
+
+                string msg = gestor.AsignarEmpresa(ciclo, alumno, empresa, tutorInstituto, tutorEmpresa);
+
+                if (msg != "")
+                {
+                    MessageBox.Show(msg);
+                }
+                else
+                {
+                    cmbCiclos.Text = "";
+                    cmbAlumnosDelCiclo.Text = "";
+                    cmbEmpresasParaElCiclo.Text = "";
+                    cmbTutorInstituto.Text = "";
+                    txtTutorEmpresa.Text = "";
+                    RecargarCMB();
+                }
+            }
         }
     }
 }

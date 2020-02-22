@@ -20,7 +20,20 @@ namespace Entidades
             this.FCTs = new HashSet<FCT>();
             this.OfertasFCTs = new HashSet<OfertasFCT>();
         }
-    
+
+        public Empresa(int id, string nombre, string telefonoContacto):this()
+        {
+            Id = id;
+            Nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
+            TelefonoContacto = telefonoContacto ?? throw new ArgumentNullException(nameof(telefonoContacto));
+        }
+
+        public Empresa(int id, string nombre, string telefonoContacto, ICollection<FCT> fCTs, ICollection<OfertasFCT> ofertasFCTs) : this(id, nombre, telefonoContacto)
+        {
+            FCTs = fCTs ?? throw new ArgumentNullException(nameof(fCTs));
+            OfertasFCTs = ofertasFCTs ?? throw new ArgumentNullException(nameof(ofertasFCTs));
+        }
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string TelefonoContacto { get; set; }

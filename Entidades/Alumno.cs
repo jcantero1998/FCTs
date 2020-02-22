@@ -14,6 +14,25 @@ namespace Entidades
     
     public partial class Alumno
     {
+        public Alumno()
+        {
+        }
+
+        public Alumno(int nMatricula, string nombre, string telefono, bool aprobado, string idCiclo)
+        {
+            NMatricula = nMatricula;
+            Nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
+            Telefono = telefono ?? throw new ArgumentNullException(nameof(telefono));
+            Aprobado = aprobado;
+            IdCiclo = idCiclo ?? throw new ArgumentNullException(nameof(idCiclo));
+        }
+
+        public Alumno(int nMatricula, string nombre, string telefono, bool aprobado, string idCiclo, Ciclo ciclo, FCT fCT) : this(nMatricula, nombre, telefono, aprobado, idCiclo)
+        {
+            Ciclo = ciclo ?? throw new ArgumentNullException(nameof(ciclo));
+            FCT = fCT ?? throw new ArgumentNullException(nameof(fCT));
+        }
+
         public int NMatricula { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }
