@@ -93,10 +93,14 @@ namespace Datos
             }
 
             //El alumno ya tiene asignada la empresa
-            if (alumno.FCT.Empresa.Id == empresa.Id)
+            if (alumno.FCT != null)
             {
-                return $"El alumno {alumno.Nombre} ya está asignado a la empresa {empresa.Nombre}";
+                return $"El alumno {alumno.Nombre} ya está asignado a la empresa {alumno.FCT.Empresa.Nombre}";
             }
+            //if (alumno.FCT.Empresa.Id == empresa.Id)
+            //{
+            //    return $"El alumno {alumno.Nombre} ya está asignado a la empresa {empresa.Nombre}";
+            //}
 
             //La empresa ya tiene asignada la cantidad de alumnos pedidos
             if (ofertasParaElCiclo.Cantidad <= ofertasParaElCiclo.Empresa.FCTs.Count)// oferta.Empresa.FCTs.Count
@@ -105,10 +109,11 @@ namespace Datos
             }
 
             //Asignar alumno
-            fct.FCTs.Add(new FCT(alumno.NMatricula, empresa.Id, tutorInstituto.Nombre, tutorEmpresa));
-            //estado.SaveChangesAsync();
+            fct.FCTs.Add(new FCT(alumno.NMatricula, empresa.Id, tutorInstituto.Id, tutorEmpresa));
+
             try
             {
+                //fct.SaveChangesAsync();
                 fct.SaveChanges();
             }
             catch (Exception ex)

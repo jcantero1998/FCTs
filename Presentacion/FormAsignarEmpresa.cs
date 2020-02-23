@@ -70,16 +70,19 @@ namespace Presentacion
 
             //Alumnos Del Ciclo
             var alumnosDelCiclo = (from alumn in cicloActual.Alumnos
-                                   select new { alumn.NMatricula, alumn.Nombre,alumn.Telefono,alumn.Aprobado, alumn.IdCiclo }).ToList();
+                                   select alumn).ToList();
+            cmbAlumnosDelCiclo.Text = "";
+            cmbAlumnosDelCiclo.Items.Clear();
             cmbAlumnosDelCiclo.Items.AddRange(alumnosDelCiclo.ToArray());
             cmbAlumnosDelCiclo.DisplayMember = "Nombre";
 
             //Empresas para el ciclo actual
             var empresasParaElCiclo = (from oferta in cicloActual.OfertasFCTs
-                                       select new { oferta.Empresa.Id, oferta.Empresa.Nombre, oferta.Empresa.TelefonoContacto}).ToList();
+                                       select oferta.Empresa).ToList();
+            cmbEmpresasParaElCiclo.Text = "";
+            cmbEmpresasParaElCiclo.Items.Clear();
             cmbEmpresasParaElCiclo.Items.AddRange(empresasParaElCiclo.ToArray());
             cmbEmpresasParaElCiclo.DisplayMember = "Nombre";
-
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -96,7 +99,6 @@ namespace Presentacion
             }
             else
             {
-                //TODO PASAR STRINGS EN VEZ DE OBJETOS, PORQUE DA ERROR AL INTENTAR CONVERTIRLOS
                 Ciclo ciclo = (Ciclo)cmbCiclos.SelectedItem;
                 Alumno alumno = (Alumno)cmbAlumnosDelCiclo.SelectedItem;
                 Empresa empresa = (Empresa)cmbEmpresasParaElCiclo.SelectedItem;
