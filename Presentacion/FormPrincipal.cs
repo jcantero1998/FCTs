@@ -79,12 +79,16 @@ namespace Presentacion
         private void button1_Click(object sender, EventArgs e)
         {
             var formAsignarEmpresa = new FormAsignarEmpresa();
-            formAsignarEmpresa.Show();
+            //formAsignarEmpresa.Show();
+            formAsignarEmpresa.ShowDialog(this);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //TODO Retirar la empresa a un alumno o alumna
+            var formRetirarEmpresa = new FormRetirarEmpresa();
+            //formRetirarEmpresa.Show();
+            formRetirarEmpresa.ShowDialog(this);
 
         }
     }

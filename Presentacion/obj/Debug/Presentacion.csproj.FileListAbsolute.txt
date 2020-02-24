@@ -19,3 +19,4 @@ E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.csproj.CopyCo
 E:\Desktop\Acceso a datos\FCTs\Presentacion\bin\Debug\EntityFramework.SqlServer.dll
 E:\Desktop\Acceso a datos\FCTs\Presentacion\bin\Debug\EntityFramework.SqlServer.xml
 E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.FormAsignarEmpresa.resources
+E:\Desktop\Acceso a datos\FCTs\Presentacion\obj\Debug\Presentacion.FormRetirarEmpresa.resources

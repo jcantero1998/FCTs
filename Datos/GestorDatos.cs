@@ -122,5 +122,53 @@ namespace Datos
             }
             return "";
         }
+
+        public string ComprobarRetirarEmpresa(Ciclo ciclo, Alumno alumno)
+        {
+            //Que exista el ciclo
+            Ciclo cicloComprobar = fct.Ciclos.Find(ciclo.Id);
+            if (cicloComprobar == null)
+            {
+                return $"El ciclo {ciclo.Nombre} no existe";
+            }
+
+            //Que exista el alumno y sea del ciclo
+            Alumno alumnoComprobar = ciclo.Alumnos.Where(alumn => alumn.NMatricula.Equals(alumno.NMatricula)).SingleOrDefault();
+            if (alumnoComprobar == null)
+            {
+                return $"El alumno {alumno.Nombre} no existe o no es del ciclo {ciclo.Nombre}";
+            }
+
+            //Que el alumno haya aprobado el ciclo
+            if (alumno.Aprobado == false)
+            {
+                return $"El alumno {alumno.Nombre} no puede tener asignada empresa poruqe no ha aprobado el ciclo";
+            }
+
+            //El alumno no tenga asignada la empresa
+            if (alumno.FCT == null)
+            {
+                return $"El alumno {alumno.Nombre} no está asignado a ninguna empresa";
+            }
+            return "";
+        }
+
+        public string RetirarEmpresa(Alumno alumno)
+        {
+            FCT fctBuscar = fct.FCTs.Where(fct => fct.NMatricula.Equals(alumno.NMatricula)).SingleOrDefault();
+
+            fct.FCTs.Remove(fctBuscar);
+
+            try
+            {
+                fct.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            return "";
+        }
+
     }
 }
